@@ -1,0 +1,12 @@
+{
+  "nodes": ["slow_queries", "connection_pool_exhaustion", "traffic_spike", "missing_index", "high_cpu"],
+  "edges": [
+    {"cause": "slow_queries", "effect": "connection_pool_exhaustion", "confidence": 0.75, "evidence": "Confirmed: slow queries held open connections, starving the pool", "edge_type": "direct"},
+    {"cause": "traffic_spike", "effect": "slow_queries", "confidence": 0.65, "evidence": "Load generator data shows query latency spiked with traffic", "edge_type": "direct"},
+    {"cause": "missing_index", "effect": "slow_queries", "confidence": 0.88, "evidence": "The users table lacked an index on created_at, causing full scans under load", "edge_type": "direct"},
+    {"cause": "high_cpu", "effect": "slow_queries", "confidence": 0.5, "evidence": "When CPU is saturated the query executor slows down significantly", "edge_type": "direct"}
+  ],
+  "source_text": "Post-mortem analysis by SRE team",
+  "model_used": "ollama/mistral",
+  "created_at": "2026-03-22T16:00:00"
+}

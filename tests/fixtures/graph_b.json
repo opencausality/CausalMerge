@@ -1,0 +1,11 @@
+{
+  "nodes": ["slow_queries", "connection_pool_exhaustion", "timeout_errors", "deploy_event"],
+  "edges": [
+    {"cause": "slow_queries", "effect": "connection_pool_exhaustion", "confidence": 0.9, "evidence": "Query latency increase directly caused connection pool to fill up", "edge_type": "direct"},
+    {"cause": "timeout_errors", "effect": "connection_pool_exhaustion", "confidence": 0.45, "evidence": "Ops team initially suspected timeout backpressure was filling the pool", "edge_type": "direct"},
+    {"cause": "deploy_event", "effect": "slow_queries", "confidence": 0.8, "evidence": "The deployment introduced a missing index, causing query plans to degrade", "edge_type": "direct"}
+  ],
+  "source_text": "Incident report from platform team",
+  "model_used": "ollama/llama3.1",
+  "created_at": "2026-03-21T09:30:00"
+}

@@ -1,0 +1,12 @@
+{
+  "nodes": ["slow_queries", "connection_pool_exhaustion", "timeout_errors", "traffic_spike", "high_cpu"],
+  "edges": [
+    {"cause": "slow_queries", "effect": "connection_pool_exhaustion", "confidence": 0.85, "evidence": "Slow queries held connections longer, exhausting the pool", "edge_type": "direct"},
+    {"cause": "connection_pool_exhaustion", "effect": "timeout_errors", "confidence": 0.9, "evidence": "Exhausted pool caused requests to timeout waiting for connections", "edge_type": "direct"},
+    {"cause": "traffic_spike", "effect": "slow_queries", "confidence": 0.7, "evidence": "Traffic spike increased query load", "edge_type": "direct"},
+    {"cause": "traffic_spike", "effect": "high_cpu", "confidence": 0.75, "evidence": "High traffic drove CPU usage up", "edge_type": "direct"}
+  ],
+  "source_text": "Incident report from database team",
+  "model_used": "ollama/llama3.1",
+  "created_at": "2026-03-20T14:00:00"
+}
